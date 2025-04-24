@@ -8,7 +8,7 @@ function App() {
   useEffect(() => {
     fetch("http://127.0.0.1:8000/data", {
       headers: {
-        "X-App-Secret": "holosiesecretkey",
+        "X-App-Secret": "secret-key-not-expose-backend-outside-app",
       },
     })
       .then((response) => response.json())
@@ -29,7 +29,7 @@ function App() {
         {loading ? (
           <div className="loading">Loading...</div>
         ) : (
-          <div className="data">33333{data}</div>
+          <div className="data">{data}</div>
         )}
       </div>
     </>

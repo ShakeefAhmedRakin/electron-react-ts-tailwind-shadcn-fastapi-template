@@ -19,7 +19,7 @@ async def verify_secret_header(request: Request, call_next):
         return await call_next(request)
 
     # Only enforce secret header for other methods
-    if request.headers.get("x-app-secret") != "holosiesecretkey":
+    if request.headers.get("x-app-secret") != "secret-key-not-expose-backend-outside-app":
         raise HTTPException(status_code=403, detail="Forbidden")
 
     return await call_next(request)
@@ -31,4 +31,4 @@ def read_root():
 
 @app.get("/data")
 def read_data():
-    return {"message": "Hello 22233333 from FastAPI"}
+    return {"message": "Hello from FastAPI"}
