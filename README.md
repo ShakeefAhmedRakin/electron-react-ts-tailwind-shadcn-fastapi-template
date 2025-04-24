@@ -57,7 +57,7 @@ npm install
 
 #### Create a Virtual Environment
 
-> _Requires Python 3.8.0+ (Tested with 3.12)_
+> _Requires Python 3.8.0+ (Tested with 3.8.0)_
 
 #### On **Windows**:
 
