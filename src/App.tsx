@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { Button } from "./components/ui/button";
 
 function App() {
   const [loading, isLoading] = useState(false);
@@ -25,6 +26,7 @@ function App() {
 
   return (
     <>
+      <Button>TEST</Button>
       <div className="">
         {loading ? (
           <div className="loading">Loading...</div>
