@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain, shell } from "electron";
 import { spawn, ChildProcessWithoutNullStreams } from "child_process";
 import { fileURLToPath } from "url";
 import path from "path";
@@ -31,7 +31,7 @@ function createWindow() {
     width: 1000,
     height: 700,
     resizable: false,
-    icon: path.join(process.env.VITE_PUBLIC, "electron-vite.svg"),
+    icon: path.join(process.env.VITE_PUBLIC, "electron.svg"),
     webPreferences: {
       preload: path.join(__dirname, "preload.mjs"),
       contextIsolation: true,
@@ -110,3 +110,10 @@ app.on("activate", () => {
 });
 
 app.whenReady().then(createWindow);
+
+// API FUNCTIONS
+ipcMain.on("open-external", (_event, url) => {
+  shell.openExternal(url).catch((err) => {
+    console.error("Failed to open URL:", err);
+  });
+});

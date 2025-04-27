@@ -17,7 +17,7 @@ async def verify_secret_header(request: Request, call_next):
     # Allow preflight CORS requests through
     if request.method == "OPTIONS":
         return await call_next(request)
-
+    
     # Only enforce secret header for other methods
     if request.headers.get("x-app-secret") != "secret-key-not-expose-backend-outside-app":
         raise HTTPException(status_code=403, detail="Forbidden")
