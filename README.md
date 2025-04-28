@@ -34,7 +34,7 @@ You can:
 - Refactor into routers and services to scale better
 - Install any Python packages you need via `requirements.txt`
 
-> _Deep FastAPI structuring (e.g., using multiple modules with `APIRouter`, service layers, database layers, etc.) is yet to be fully tested in production builds with PyInstaller. This is on the roadmap for future improvements._
+> _Deep FastAPI structuring, such as using multiple modules with `APIRouter`, service layers, and database layers, is now fully tested in production builds with PyInstaller. This feature is stable and ready for use._
 
 Use the backend like you would in any typical FastAPI project — just keep an eye on how imports behave when bundling.
 
@@ -113,7 +113,6 @@ Build output will be located under the `release/{version}` folder.
 
 - Add SQLite support to backend
 - Test Linux compatibility and packaging
-- Refactor FastAPI backend into modular structure and test in production
 
 ## License
 
