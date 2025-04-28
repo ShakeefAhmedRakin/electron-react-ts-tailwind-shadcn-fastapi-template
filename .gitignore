@@ -29,3 +29,6 @@ backend/dist
 backend/build
 backend/venv
 
+__pycache__/
+**/__pycache__/
+

@@ -1,12 +1,12 @@
 # -*- mode: python ; coding: utf-8 -*-
 
 a = Analysis(
-    ['main.py'],
-    pathex=[],
+    ['app/main.py'],
+    pathex=['.'],
     binaries=[],
-    datas=[],
+    datas=[('app', '.')],
     hiddenimports=['app', 'uvicorn'],
-    hookspath=['extra-hooks'],
+    hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[],

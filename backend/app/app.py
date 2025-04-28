@@ -1,11 +1,14 @@
-from fastapi import FastAPI,Request, HTTPException
+from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from app.config.config import SECRET_KEY, ALLOWED_ORIGINS
+from app.api import root, data
 
 app = FastAPI()
 
+# Add CORS middleware for cross-origin requests
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -14,21 +17,11 @@ app.add_middleware(
 
 @app.middleware("http")
 async def verify_secret_header(request: Request, call_next):
-    # Allow preflight CORS requests through
     if request.method == "OPTIONS":
         return await call_next(request)
-    
-    # Only enforce secret header for other methods
-    if request.headers.get("x-app-secret") != "secret-key-not-expose-backend-outside-app":
+    if request.headers.get("x-app-secret") != SECRET_KEY:
         raise HTTPException(status_code=403, detail="Forbidden")
-
     return await call_next(request)
 
-
-@app.get("/")
-def read_root():
-    return {"message": "Hello World"}
-
-@app.get("/data")
-def read_data():
-    return {"message": "Hello from FastAPI"}
+app.include_router(root.router)
+app.include_router(data.router, prefix="/data")

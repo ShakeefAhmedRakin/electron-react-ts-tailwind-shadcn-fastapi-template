@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently \"npm run dev-backend\" \"npm run dev-frontend\"",
     "dev-frontend": "vite",
-    "dev-backend": "cd backend && uvicorn app:app --reload --host 127.0.0.1 --port 8000",
+    "dev-backend": "cd backend && uvicorn app.app:app --reload --host 127.0.0.1 --port 8000",
     "build": "npm run build-frontend && npm run build-backend && npm run build-electron",
     "build-electron": "electron-builder",
     "build-backend": "cd backend && pyinstaller -y --clean main.spec && cd ..",
